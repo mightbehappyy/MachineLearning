@@ -10,10 +10,10 @@ def data_append():
     lista_dfs = []
     for file in lista_paths:
         df = pd.read_parquet(file)
-        lista_dfs.append(df)
+        lista_dfs.append(df.reset_index())
 
 
-
+    
     df_appended = pd.concat(lista_dfs, ignore_index=True)
     path_to_save = "/home/pedro/AulaMachineLearning/machinelearning/data/processed/"
     df_appended.to_parquet(path_to_save+"fato_appended.parquet.gzip", compression="gzip")
